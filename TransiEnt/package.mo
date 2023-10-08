@@ -242,13 +242,13 @@ import      Modelica.Units.SI
 annotation (uses(
     Modelica_StateGraph2(version="2.0.4"),
     DataFiles(version="1.0.5"),
-    Design(version="1.0.7"),
+    Design(version="1.2.0"),
     Buildings(version="7.0.0"),
     Modelica(version="4.0.0"),
     Modelica_LinearSystems2(version="2.4.0"),
     ModelicaReference(version="4.0.0"),
-    TILMedia(version="1.8.0 ClaRa"),
-    ClaRa(version="1.8.0"),
+    TILMedia(version="1.8.1 ClaRa"),
+    ClaRa(version="1.8.1"),
     DymolaCommands(version="1.11")),           Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Bitmap(extent={{-70,-62},{72,80}}, fileName="modelica://TransiEnt/Images/TransiEnt_Logo_Kreis_komprimiert.png")}),
   Documentation(info="<html>
