@@ -69,6 +69,7 @@ model SimCenter "SimCenter for global parameters, ambient conditions and collect
      TransiEnt.Basics.Tables.Ambient.UndergroundTemperature_Duesseldorf_1m_3600s_TMY  constrainedby TransiEnt.Components.Boundaries.Ambient.Base.PartialTemperature
                                                "Profile for the ground temperature" annotation (choicesAllMatching=true,Dialog(tab="Ambience",group="Ambience parameters"));
   Ground_Temperature Variable_Ground_Temperature;
+  // TEST
 
   parameter Real lambda=10 "degree of longitude of location" annotation(Dialog(tab="Ambience", group="Location parameters"));
   parameter Real phi=53.63 "degree of latitude of location" annotation(Dialog(tab="Ambience", group="Location parameters"));
