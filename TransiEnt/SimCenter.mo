@@ -65,11 +65,8 @@ model SimCenter "SimCenter for global parameters, ambient conditions and collect
   parameter SI.Temperature T_ground = 282.48 "|Ambience|Ambience parameters|Ground temperature"; //same as T_amb_const in average
   parameter Boolean variable_T_ground = false "Use variable temperature profile"
                                                                                 annotation (choicesAllMatching=true,Dialog(tab="Ambience",group="Ambience parameters"));
-  replaceable model Ground_Temperature =
-     TransiEnt.Basics.Tables.Ambient.UndergroundTemperature_Duesseldorf_1m_3600s_TMY  constrainedby TransiEnt.Components.Boundaries.Ambient.Base.PartialTemperature
-                                               "Profile for the ground temperature" annotation (choicesAllMatching=true,Dialog(tab="Ambience",group="Ambience parameters"));
-  Ground_Temperature Variable_Ground_Temperature;
-  // TEST
+  
+  parameter Real Variable_Ground_Temperature = 282.48 "Fixed profile for the ground temperature" annotation (choicesAllMatching=true,Dialog(tab="Ambience",group="Ambience parameters")) ;
 
   parameter Real lambda=10 "degree of longitude of location" annotation(Dialog(tab="Ambience", group="Location parameters"));
   parameter Real phi=53.63 "degree of latitude of location" annotation(Dialog(tab="Ambience", group="Location parameters"));
@@ -359,7 +356,7 @@ model SimCenter "SimCenter for global parameters, ambient conditions and collect
 
                                                                                                                                                                                            //Source: https://www.eex.com/en/market-data/power/futures/phelix-futures oder http://www.finanzen.net/rohstoffe/eex-strom-phelix-baseload-year-future
   //Electricity selling prices time series in EUR/kWh
-  replaceable TransiEnt.Basics.Tables.ElectricGrid.ElectricityPrices.SpotPriceElectricity_Phelix_DayAhead_3600s_2011 electricityPrice constrainedby TransiEnt.Basics.Tables.ElectricGrid.ElectricityPrices.GenericElectricityPriceTable "Electricity market prices in EUR per kWh" annotation (Dialog(tab="PricesAndSubsidies"), choicesAllMatching);
+  // replaceable TransiEnt.Basics.Tables.ElectricGrid.ElectricityPrices.SpotPriceElectricity_Phelix_DayAhead_3600s_2011 electricityPrice constrainedby TransiEnt.Basics.Tables.ElectricGrid.ElectricityPrices.GenericElectricityPriceTable "Electricity market prices in EUR per kWh" annotation (Dialog(tab="PricesAndSubsidies"), choicesAllMatching);
 
 
   //Demand-related cost
@@ -385,7 +382,7 @@ model SimCenter "SimCenter for global parameters, ambient conditions and collect
   TransiEnt.Basics.Interfaces.Ambient.IrradianceOut i_global=ambientConditions.globalSolarRadiation.value "Global solar radiation (from component ambientConditions)";
   TransiEnt.Basics.Interfaces.Ambient.IrradianceOut i_direct=ambientConditions.directSolarRadiation.value "Direct solar radiation (from component ambientConditions)";
   TransiEnt.Basics.Interfaces.Ambient.IrradianceOut i_diffuse=ambientConditions.diffuseSolarRadiation.value "Diffuse solar radiation (from component ambientConditions)";
-  Modelica.Blocks.Interfaces.RealOutput T_ground_var(value=if variable_T_ground then Variable_Ground_Temperature.value else T_ground)  "Diffuse solar radiation (from component ambientConditions)";
+  Modelica.Blocks.Interfaces.RealOutput T_ground_var(value=if variable_T_ground then Variable_Ground_Temperature else T_ground)  "Diffuse solar radiation (from component ambientConditions)";
 
    annotation ( defaultComponentName="simCenter",
     defaultComponentPrefixes="inner",
